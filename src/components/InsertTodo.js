@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-// import { request } from '../helpers'
+// action functions to call dispatch action
+import { insertTodo } from '../redux/actions'
 
 class InsertTodo extends React.Component {
   constructor() {
@@ -27,12 +28,12 @@ class InsertTodo extends React.Component {
     // POST new todo into the backend
     // from Redux mapDispatchToProps
     if (this.state.text) {
-      this.props.dispatch({
-        type: 'INSERT_NEW_TODO',
-        payload: {
+      // Call redux-thunk actions within the dispatchers
+      this.props.dispatch(
+        insertTodo({
           text: this.state.text
-        }
-      })
+        })
+      )
     }
 
     // GET latest todos from the backend

@@ -24,13 +24,34 @@ const todosReducer = (state = todosInitialState, action) => {
     //   return state
     // }
 
-    case 'INSERT_NEW_TODO': {
+    // case 'INSERT_NEW_TODO': {
+    //   return {
+    //     todos: state.todos.concat({
+    //       text: action.payload.text
+    //     })
+    //   }
+    // }
+
+    case 'INSERT_TODO_STARTED':
       return {
-        todos: state.todos.concat({
-          text: action.payload.text
-        })
+        ...state,
+        loading: true
       }
-    }
+
+    case 'INSERT_TODO_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        todos: [...state.todos, action.payload.todo]
+      }
+
+    case 'INSERT_TODO_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
 
     case 'GET_TODOS': {
       return {
