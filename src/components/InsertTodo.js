@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import { request } from '../helpers'
+// import { request } from '../helpers'
 
 class InsertTodo extends React.Component {
   constructor() {
@@ -20,16 +21,6 @@ class InsertTodo extends React.Component {
     }
   }
 
-  postTodos = async () => {
-    await request({
-      method: 'post',
-      url: '/todos',
-      data: {
-        text: this.state.text
-      }
-    })
-  }
-
   clearInputText = () => {
     this.setState({
       text: ''
@@ -38,9 +29,18 @@ class InsertTodo extends React.Component {
 
   onSubmit = async () => {
     // POST new todo into the backend
-    await this.postTodos()
+    // from Redux mapDispatchToProps
+    this.props.dispatch({
+      type: 'POST_NEW_TODO',
+      payload: {
+        text: this.state.text
+      }
+    })
+
     // GET latest todos from the backend
-    await this.props.setTodos()
+    // from Redux mapDispatchToProps
+    // await this.props.getTodos()
+
     // Clear the input text
     this.clearInputText()
   }
@@ -65,4 +65,33 @@ class InsertTodo extends React.Component {
   }
 }
 
-export default InsertTodo
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     postNewTodo: text => {
+//       const action = {
+//         type: 'POST_NEW_TODO',
+//         payload: {
+//           text: text
+//         }
+//       }
+//       dispatch(action)
+//     },
+//     getTodos: () => {
+//       const action = {
+//         type: 'GET_TODOS'
+//       }
+//       dispatch(action)
+//     }
+//   }
+// }
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  }
+}
+
+export default connect(
+  // mapDispatchToProps,
+  mapStateToProps
+)(InsertTodo)

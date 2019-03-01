@@ -1,15 +1,12 @@
 const initialState = {
   todos: [
     {
-      id: 1,
       text: 'Running'
     },
     {
-      id: 2,
       text: 'Swimming'
     },
     {
-      id: 3,
       text: 'Jumping'
     }
   ]
@@ -17,6 +14,34 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // Example of a case
+    // case 'EXAMPLE': {
+    //   const payload = {
+    //     text: 'New todo text'
+    //   }
+    //   const action = {
+    //     type: 'SET_TODOS',
+    //     payload: payload
+    //   }
+    //   return state
+    // }
+
+    case 'POST_NEW_TODO': {
+      return {
+        todos: state.todos.concat({
+          text: action.payload.text
+        })
+      }
+    }
+
+    case 'GET_TODOS': {
+      // do request to backend here
+
+      return {
+        todos: state.todos
+      }
+    }
+
     default: {
       return state
     }
