@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+
 import { request } from '../helpers'
 
 const initialState = {
@@ -5,6 +7,7 @@ const initialState = {
 }
 
 // reducer is not a promise
+// reducer is alwyas synchronous, cannot be asynchronous
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     // Example of a case
@@ -47,4 +50,21 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer
+// combining all reducers
+const rootReducer = combineReducers({
+  reducer
+})
+
+export default rootReducer
+
+// we use thunk because reducer cannot be asynchronous
+// thunk is a function that return another function
+// the function is used to delay the evaluation/calculation of an operation
+// it's similar to higher order function/component
+
+// const functionOne = paramOne => {
+//   const functionTwo = paramTwo => {
+//     return 'resultFromTwo'
+//   }
+//   return functionTwo
+// }
