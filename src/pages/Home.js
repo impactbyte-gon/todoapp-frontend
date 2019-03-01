@@ -1,44 +1,21 @@
 import React from 'react'
-
-import { request } from '../helpers'
+import { connect } from 'react-redux'
 
 import InsertTodo from '../components/InsertTodo'
 import Todos from '../components/Todos'
 
-class Home extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      todos: []
-    }
-  }
+const Home = props => {
+  props.dispatch({
+    type: 'GET_TODOS'
+  })
 
-  setTodos = async () => {
-    // request is axios instance
-    // you can also use XHR object / fetch()
-    const response = await request({
-      method: 'get',
-      url: '/todos'
-    })
-    this.setState({
-      todos: response.data.todos
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Todoapp</h1>
-        {/* pass this.setTodos function to setTodos props */}
-        <InsertTodo setTodos={this.setTodos} />
-        <Todos />
-      </div>
-    )
-  }
-
-  componentDidMount = async () => {
-    this.setTodos()
-  }
+  return (
+    <div>
+      <h1>Todoapp</h1>
+      <InsertTodo />
+      <Todos />
+    </div>
+  )
 }
 
-export default Home
+export default connect()(Home)

@@ -1,17 +1,10 @@
+import { request } from '../helpers'
+
 const initialState = {
-  todos: [
-    {
-      text: 'Running'
-    },
-    {
-      text: 'Swimming'
-    },
-    {
-      text: 'Jumping'
-    }
-  ]
+  todos: []
 }
 
+// reducer is not a promise
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     // Example of a case
@@ -36,9 +29,15 @@ const reducer = (state = initialState, action) => {
 
     case 'GET_TODOS': {
       // do request to backend here
+      // slow process
+      const response = request({
+        method: 'get',
+        url: '/todos'
+      })
+      console.log(response.data)
 
       return {
-        todos: state.todos
+        todos: response.data
       }
     }
 
