@@ -1,5 +1,6 @@
 import React from 'react'
-import axios from 'axios'
+
+import { request } from './helpers'
 
 import InsertTodo from './components/InsertTodo'
 import Todos from './components/Todos'
@@ -23,7 +24,11 @@ class App extends React.Component {
 
   // using axios
   componentDidMount = async () => {
-    const response = await axios.get('http://localhost:8000/todos')
+    // request is axios instance
+    const response = await request({
+      method: 'get',
+      url: '/todos'
+    })
 
     this.setState({
       todos: response.data.todos
