@@ -30,11 +30,19 @@ class InsertTodo extends React.Component {
     })
   }
 
+  clearInputText = () => {
+    this.setState({
+      text: ''
+    })
+  }
+
   onSubmit = async () => {
     // POST new todo into the backend
     this.postTodos()
     // GET latest todos from the backend
     this.props.setTodos()
+    // Clear the input text
+    this.clearInputText()
   }
 
   render() {
@@ -49,6 +57,7 @@ class InsertTodo extends React.Component {
           onChange={this.onChange}
           type="text"
           placeholder="your todo here..."
+          value={this.state.text}
         />
         <input type="submit" value="Insert" />
       </form>
