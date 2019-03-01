@@ -24,12 +24,16 @@ class App extends React.Component {
 
   // using axios
   componentDidMount = async () => {
+    this.setTodos()
+  }
+
+  setTodos = async () => {
     // request is axios instance
+    // you can also use XHR object / fetch()
     const response = await request({
       method: 'get',
       url: '/todos'
     })
-
     this.setState({
       todos: response.data.todos
     })
@@ -39,8 +43,8 @@ class App extends React.Component {
     return (
       <div>
         <h1>Todoapp</h1>
-        <InsertTodo />
-
+        {/* pass this.setTodos function to setTodos props */}
+        <InsertTodo setTodos={this.setTodos} />
         <Todos todos={this.state.todos} />
       </div>
     )
