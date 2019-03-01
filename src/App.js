@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class App extends Component {
+import InsertTodo from './components/InsertTodo'
+import Todos from './components/Todos'
+
+class App extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -12,39 +15,20 @@ class App extends Component {
     const response = await fetch('http://localhost:8000/todos')
     const responseJSON = await response.json()
 
-    // long version
-    this.setState(() => {
-      return {
-        todos: responseJSON.data
-      }
+    this.setState({
+      todos: responseJSON.data
     })
-
-    // short version
-    // this.setState({
-    //   todos: responseJSON
-    // })
   }
 
   render() {
+    console.log(this.state.todos)
+
     return (
       <div>
         <h1>Todoapp</h1>
-        <ul>
-          {/* using short circuit operator */}
-          {this.state.todos &&
-            this.state.todos.map((item, index) => {
-              return <li key={index}>{item.text}</li>
-            })}
+        <InsertTodo />
 
-          {/* using ternary operator */}
-          {/* {this.state.todos ? (
-            this.state.todos.map((item, index) => {
-              return <li key={index}>{item.text}</li>
-            })
-          ) : (
-            <li>todos are not available</li>
-          )} */}
-        </ul>
+        <Todos todos={this.state.todos} />
       </div>
     )
   }
