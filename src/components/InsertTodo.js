@@ -5,7 +5,7 @@ class InsertTodo extends React.Component {
     return (
       <form>
         <input type="text" placeholder="your todo here..." />
-        <input type="submit" value="Create" />
+        <input type="submit" value="Insert" />
       </form>
     )
   }
