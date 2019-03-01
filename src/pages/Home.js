@@ -6,6 +6,13 @@ import InsertTodo from '../components/InsertTodo'
 import Todos from '../components/Todos'
 
 class Home extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      todos: []
+    }
+  }
+
   setTodos = async () => {
     // request is axios instance
     // you can also use XHR object / fetch()
