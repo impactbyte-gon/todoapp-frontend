@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 
 import Home from './pages/Home'
 
-import reducer from './redux/reducer'
 import reduxStore from './redux/store'
 
 const App = () => {

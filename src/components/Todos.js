@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const Todos = props => {
   return (
@@ -11,4 +12,12 @@ const Todos = props => {
   )
 }
 
-export default Todos
+// get state inside the store
+// make it as props
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  }
+}
+
+export default connect(mapStateToProps)(Todos)

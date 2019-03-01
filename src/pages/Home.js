@@ -6,13 +6,6 @@ import InsertTodo from '../components/InsertTodo'
 import Todos from '../components/Todos'
 
 class Home extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      todos: []
-    }
-  }
-
   setTodos = async () => {
     // request is axios instance
     // you can also use XHR object / fetch()
@@ -31,7 +24,7 @@ class Home extends React.Component {
         <h1>Todoapp</h1>
         {/* pass this.setTodos function to setTodos props */}
         <InsertTodo setTodos={this.setTodos} />
-        <Todos todos={this.state.todos} />
+        <Todos />
       </div>
     )
   }

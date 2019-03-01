@@ -1,14 +1,22 @@
 const initialState = {
-  todos: []
+  todos: [
+    {
+      id: 1,
+      text: 'Running'
+    },
+    {
+      id: 2,
+      text: 'Swimming'
+    },
+    {
+      id: 3,
+      text: 'Jumping'
+    }
+  ]
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SAMPLE': {
-      return {
-        todos: []
-      }
-    }
     default: {
       return state
     }
