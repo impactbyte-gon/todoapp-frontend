@@ -12,13 +12,9 @@ class InsertTodo extends React.Component {
   }
 
   onChange = event => {
-    const textInput = event.target.value
-
-    if (textInput) {
-      this.setState({
-        text: textInput
-      })
-    }
+    this.setState({
+      text: event.target.value
+    })
   }
 
   clearInputText = () => {
@@ -30,12 +26,14 @@ class InsertTodo extends React.Component {
   onSubmit = async () => {
     // POST new todo into the backend
     // from Redux mapDispatchToProps
-    this.props.dispatch({
-      type: 'INSERT_NEW_TODO',
-      payload: {
-        text: this.state.text
-      }
-    })
+    if (this.state.text) {
+      this.props.dispatch({
+        type: 'INSERT_NEW_TODO',
+        payload: {
+          text: this.state.text
+        }
+      })
+    }
 
     // GET latest todos from the backend
     // from Redux mapDispatchToProps
