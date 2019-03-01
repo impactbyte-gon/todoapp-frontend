@@ -38,9 +38,9 @@ class InsertTodo extends React.Component {
 
   onSubmit = async () => {
     // POST new todo into the backend
-    this.postTodos()
+    await this.postTodos()
     // GET latest todos from the backend
-    this.props.setTodos()
+    await this.props.setTodos()
     // Clear the input text
     this.clearInputText()
   }
