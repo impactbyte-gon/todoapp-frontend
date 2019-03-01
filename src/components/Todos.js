@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 const Todos = props => {
   return (
     <ul>
-      {props.todos &&
-        props.todos.map((item, index) => {
+      {props.data &&
+        props.data.map((item, index) => {
           return <li key={index}>{item.text}</li>
         })}
     </ul>
@@ -16,7 +16,7 @@ const Todos = props => {
 // make it as props
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    data: state.todosReducer.todos
   }
 }
 

@@ -63,26 +63,6 @@ class InsertTodo extends React.Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     insertNewTodo: text => {
-//       const action = {
-//         type: 'INSERT_NEW_TODO',
-//         payload: {
-//           text: text
-//         }
-//       }
-//       dispatch(action)
-//     },
-//     getTodos: () => {
-//       const action = {
-//         type: 'GET_TODOS'
-//       }
-//       dispatch(action)
-//     }
-//   }
-// }
-
 const mapStateToProps = state => {
   return {
     todos: state.todos

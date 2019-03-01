@@ -2,13 +2,15 @@ import { combineReducers } from 'redux'
 
 import { request } from '../helpers'
 
-const initialState = {
-  todos: []
-}
+const todosInitialState = [
+  {
+    text: 'Learning'
+  }
+]
 
 // reducer is not a promise
 // reducer is alwyas synchronous, cannot be asynchronous
-const reducer = (state = initialState, action) => {
+const todosReducer = (state = todosInitialState, action) => {
   switch (action.type) {
     // Example of a case
     // case 'EXAMPLE': {
@@ -31,16 +33,8 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'GET_TODOS': {
-      // do request to backend here
-      // slow process
-      const response = request({
-        method: 'get',
-        url: '/todos'
-      })
-      console.log(response.data)
-
       return {
-        todos: response.data
+        todos: state
       }
     }
 
@@ -52,7 +46,7 @@ const reducer = (state = initialState, action) => {
 
 // combining all reducers
 const rootReducer = combineReducers({
-  reducer
+  todosReducer
 })
 
 export default rootReducer
