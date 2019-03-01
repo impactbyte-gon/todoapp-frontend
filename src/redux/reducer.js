@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
     //   return state
     // }
 
-    case 'POST_NEW_TODO': {
+    case 'INSERT_NEW_TODO': {
       return {
         todos: state.todos.concat({
           text: action.payload.text

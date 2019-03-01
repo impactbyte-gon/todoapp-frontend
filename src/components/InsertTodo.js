@@ -31,7 +31,7 @@ class InsertTodo extends React.Component {
     // POST new todo into the backend
     // from Redux mapDispatchToProps
     this.props.dispatch({
-      type: 'POST_NEW_TODO',
+      type: 'INSERT_NEW_TODO',
       payload: {
         text: this.state.text
       }
@@ -67,9 +67,9 @@ class InsertTodo extends React.Component {
 
 // const mapDispatchToProps = dispatch => {
 //   return {
-//     postNewTodo: text => {
+//     insertNewTodo: text => {
 //       const action = {
-//         type: 'POST_NEW_TODO',
+//         type: 'INSERT_NEW_TODO',
 //         payload: {
 //           text: text
 //         }
